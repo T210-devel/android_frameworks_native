@@ -436,7 +436,11 @@ void Layer::setGeometry(
     layer.setCrop(computeCrop(hw));
     layer.setPlaneAlpha(s.alpha);
 
-    Transform transform = computeBufferTransform(hw);
+#ifdef MRVL_HARDWARE
+ layer.setAlpha(s.alpha);
+#endif
+
+Transform transform = computeBufferTransform(hw);
 
     // this gives us only the "orientation" component of the transform
     const uint32_t orientation = transform.getOrientation();
